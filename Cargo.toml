@@ -5,4 +5,3 @@ authors = ["Sean Lynch <swlynch@uwaterloo.ca>"]
 
 [dependencies]
 vecmath = "0.3"
-num = "0.1"

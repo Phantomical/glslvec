@@ -1,7 +1,4 @@
 
-use num::traits::*;
-use vecmath::*;
-
 use std::ops::Fn;
 
 pub trait HasDot {
@@ -20,25 +17,26 @@ pub trait HasLength {
 	fn magnitude(&self) -> Self::Output {
 		return self.length();
 	}
-
-	fn normalize(&self) -> Self;
 }
 pub trait HasDistance {
 	type Output;
 
 	fn distance(&self, rhs: Self) -> Self::Output;
 }
+pub trait HasNormalize {
+	fn normalize(&self) -> Self;
+}
 
 pub trait HasFaceForward {
-	fn faceforward(&self, I: Self, Nref: Self) -> Self;
+	fn faceforward(&self, incident: Self, nref: Self) -> Self;
 }
 pub trait HasReflect {
-	fn reflect(&self, N: Self) -> Self;
+	fn reflect(&self, normal: Self) -> Self;
 }
 pub trait HasRefract {
 	type ElemType;
 
-	fn refract(&self, N: Self, eta: Self::ElemType) -> Self;
+	fn refract(&self, normal: Self, eta: Self::ElemType) -> Self;
 }
 
 pub trait HasX {
@@ -59,7 +57,12 @@ pub trait HasW: HasZ {
 pub trait HasPerElementOps {
 	type ElemType;
 
-	fn apply_op(&self, func: Fn(Self::ElemType) -> Self::ElemType) -> Self;
+	fn apply_op<T:Fn(&Self::ElemType) -> Self::ElemType>(&self, func: T) -> Self;
+}
+pub trait HasPerElementBinOps {
+	type ElemType;
+
+	fn apply_bin_op<T:Fn(&Self::ElemType, Self::ElemType)->Self::ElemType>(&self, rhs: Self, func: T) -> Self;
 }
 
 pub trait HasAbs {
@@ -101,9 +104,6 @@ pub trait HasCeil {
 }
 pub trait HasFract {
 	fn fract(&self) -> Self;
-}
-pub trait HasMod {
-	fn modulus(&self, modulus: Self) -> Self;
 }
 
 pub trait HasMinMax {
