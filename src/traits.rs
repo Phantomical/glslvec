@@ -109,8 +109,6 @@ pub trait HasFract {
 pub trait HasMinMax {
 	fn min(&self, rhs: Self) -> Self;
 	fn max(&self, rhs: Self) -> Self;
-
-	fn clamp(&self, min: Self, max: Self) -> Self;
 }
 
 pub trait HasMix {

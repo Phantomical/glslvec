@@ -1,5 +1,6 @@
 
 use traits::*;
+use functions::clamp;
 
 use std::ops::*;
 
@@ -93,9 +94,6 @@ macro_rules! implement_functions {
 			fn max(&self, rhs: Self) -> Self {
 				(*self).max(rhs)
 			}
-			fn clamp(&self, min: Self, max: Self) -> Self {
-				(*self).max(min).min(max)
-			}
 		}
 		impl HasMix for $type {
 			type ElemType = Self;
@@ -111,7 +109,7 @@ macro_rules! implement_functions {
 		}
 		impl HasSmoothStep for $type {
 			fn smoothstep(&self, edge0: Self, edge1: Self) -> Self {
-				let x = ((*self - edge0) / (edge1 - edge0)).clamp(0.0, 1.0);
+				let x = clamp((*self - edge0) / (edge1 - edge0), 0.0, 1.0);
 		
 				x * x * (3.0 - 2.0 * x)
 			}
@@ -195,9 +193,6 @@ impl<T: HasPerElementBinOps> HasMinMax for T
 	}
 	fn max(&self, rhs: Self) -> Self {
 		self.apply_bin_op(rhs, |ref a, b| a.max(b))
-	}
-	fn clamp(&self, min: Self, max: Self) -> Self {
-		self.max(min).min(max)
 	}
 }
 impl<T: HasPerElementBinOps> HasStep for T 
