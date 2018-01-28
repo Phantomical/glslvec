@@ -11,8 +11,16 @@ pub struct Mat3<T: Sized> {
 }
 
 impl<T: Sized + Clone> Mat3<T> {
-	pub fn new(rows: [Vec3<T>; 3]) -> Mat3<T> {
-		Mat3 { rows }
+	pub fn new(vals: [T; 9]) -> Self {
+		Self { rows: [
+			vec3(vals[0].clone(), vals[1].clone(), vals[2].clone()),
+			vec3(vals[3].clone(), vals[4].clone(), vals[5].clone()),
+			vec3(vals[6].clone(), vals[7].clone(), vals[8].clone()) ]	
+		}
+	}
+
+	pub fn from_vecs(rows: [Vec3<T>; 3]) -> Self {
+		Self { rows	}
 	}
 }
 
@@ -39,7 +47,7 @@ impl<T> Mat3<T>
 			u.x * u.y * (T::one() - cos) + u.x * sin,
 			cos + u.z * u.z * (T::one() - cos));
 
-		Mat3::new([ r1, r2, r3 ])
+		Mat3::from_vecs([ r1, r2, r3 ])
 	}
 }
 
@@ -65,9 +73,9 @@ impl<T> Mul for Mat3<T>
 			vec3(rhs[0][2], rhs[1][2], rhs[2][2]) ];
 
 		return Mat3::new([
-			vec3(dot(self[0], cols[0]), dot(self[0], cols[1]), dot(self[0], cols[2])),
-			vec3(dot(self[1], cols[0]), dot(self[1], cols[1]), dot(self[1], cols[2])),
-			vec3(dot(self[2], cols[0]), dot(self[2], cols[1]), dot(self[2], cols[2])) 
+			dot(self[0], cols[0]), dot(self[0], cols[1]), dot(self[0], cols[2]),
+			dot(self[1], cols[0]), dot(self[1], cols[1]), dot(self[1], cols[2]),
+			dot(self[2], cols[0]), dot(self[2], cols[1]), dot(self[2], cols[2]) 
 		]);
 	}
 }
