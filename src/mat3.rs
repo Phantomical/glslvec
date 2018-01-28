@@ -51,6 +51,30 @@ impl<T> Mat3<T>
 	}
 }
 
+impl<T> Mat3<T>
+	where T: Copy + Sized + Mul<Output = T> + Sub<Output = T> 
+		+ Add<Output = T> + One + Div<Output = T>
+{
+	pub fn inverse(&self) -> Self {
+		let invdet = T::one() / (
+			self[0][0] * (self[1][1] * self[2][2] - self[2][1] * self[1][2]) -
+			self[0][1] * (self[1][0] * self[2][2] - self[1][2] * self[2][0]) +
+			self[0][2] * (self[1][0] * self[2][1] - self[1][1] * self[2][0]));
+
+		Mat3::new([
+			(self[1][1] * self[2][2] - self[2][1] * self[1][2]) * invdet,
+			(self[0][2] * self[2][1] - self[0][1] * self[2][2]) * invdet,
+			(self[0][1] * self[1][2] - self[0][2] * self[1][1]) * invdet,
+			(self[1][2] * self[2][0] - self[1][0] * self[2][2]) * invdet,
+			(self[0][0] * self[2][2] - self[0][2] * self[2][0]) * invdet,
+			(self[1][0] * self[0][2] - self[0][0] * self[1][2]) * invdet,
+			(self[1][0] * self[2][1] - self[2][0] * self[1][1]) * invdet,
+			(self[2][0] * self[0][1] - self[0][0] * self[2][1]) * invdet,
+			(self[0][0] * self[1][1] - self[1][0] * self[0][1]) * invdet
+		])
+	}
+}
+
 impl<T> Index<usize> for Mat3<T>
 	where T: Sized
 {
