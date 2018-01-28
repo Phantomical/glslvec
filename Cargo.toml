@@ -3,4 +3,7 @@ name = "glslvec"
 version = "0.1.0"
 authors = ["Sean Lynch <swlynch@uwaterloo.ca>"]
 
+[features]
+swizzle = []
+
 [dependencies]
