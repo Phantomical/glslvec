@@ -343,3 +343,16 @@ impl<T> DivAssign<T> for Vec3<T>
 	}
 }
 
+impl<T> HasClamp for Vec3<T>
+	where T: HasMinMax + Sized + Clone
+{
+	type ElemType = T;
+
+	fn clamp(&self, min: T, max: T) -> Self {
+		vec3(
+			self.x.min(max).max(min),
+			self.y.min(max).max(min),
+			self.z.min(max).max(min))
+	}
+}
+

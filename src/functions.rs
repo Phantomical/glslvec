@@ -121,8 +121,8 @@ pub fn max<T: HasMinMax>(x: T, y: T) -> T {
 /// is smaller than `min`, `min` is returned. If `x`
 /// is larger than `max`, `max` is returned. For vectors
 /// this operation is done component-wise.
-pub fn clamp<T: HasMinMax>(x: T, min: T, max: T) -> T {
-	x.max(min).min(max)
+pub fn clamp<T: HasClamp>(x: T, min: T::ElemType, max: T::ElemType) -> T {
+	x.clamp(min, max)
 }
 
 /// Returns the linear interpolation of `x` and `y`. 

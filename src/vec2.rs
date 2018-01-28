@@ -302,3 +302,15 @@ impl<T> DivAssign<T> for Vec2<T>
 	}
 }
 
+impl<T> HasClamp for Vec2<T>
+	where T: HasMinMax + Sized + Clone
+{
+	type ElemType = T;
+
+	fn clamp(&self, min: T, max: T) -> Self {
+		vec2(
+			self.x.min(max).max(min),
+			self.y.min(max).max(min))
+	}
+}
+

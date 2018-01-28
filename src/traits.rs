@@ -172,6 +172,13 @@ pub trait HasMinMax {
 	fn max(&self, rhs: Self) -> Self;
 }
 
+/// Exposes a clamp operation for vectors.
+pub trait HasClamp {
+	type ElemType;
+
+	fn clamp(&self, min: Self::ElemType, max: Self::ElemType) -> Self;
+}
+
 /// Exposes the mix operation (linear interpolation)
 /// for use by the [`mix`](../fn.mix.html) function.
 pub trait HasMix {

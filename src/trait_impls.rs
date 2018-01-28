@@ -125,6 +125,14 @@ macro_rules! implement_functions {
 				1.0
 			}
 		}
+		
+		impl HasClamp for $type {
+			type ElemType = Self;
+
+			fn clamp(&self, min: Self, max: Self) -> Self {
+				self.min(max).max(min)
+			}
+		}
 	}
 }
 
