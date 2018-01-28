@@ -199,3 +199,10 @@ pub trait HasSmoothStep {
 	/// values otherwise.
 	fn smoothstep(&self, edge0: Self, edge1: Self) -> Self;
 }
+
+pub trait Zero {
+	fn zero() -> Self;
+}
+pub trait One {
+	fn one() -> Self;
+}

@@ -33,6 +33,33 @@ impl<T: Sized + Clone> Vec4<T> {
 		[self.x, self.y, self.z, self.w]
 	}
 }
+impl<T: Sized + Clone + Zero + One> Vec4<T> {
+	/// Returns a vector containing only zeros
+	pub fn zero() -> Self {
+		Self::new([T::zero(), T::zero(), T::zero(), T::zero()])
+	}
+
+	/// Returns a vector with x equal to 1 and all
+	/// other elements equal to 0.
+	pub fn unit_x() -> Self {
+		Self::new([T::one(), T::zero(), T::zero(), T::zero()])
+	}
+	/// Returns a vector with y equal to 1 and all
+	/// other elements equal to 0.
+	pub fn unit_y() -> Self {
+		Self::new([T::zero(), T::one(), T::zero(), T::zero()])
+	}
+	/// Returns a vector with z equal to 1 and all
+	/// other elements equal to 0.
+	pub fn unit_z() -> Self {
+		Self::new([T::zero(), T::zero(), T::one(), T::zero()])
+	}
+	/// Returns a vector with w equal to 1 and all
+	/// other elements equal to 0.
+	pub fn unit_w() -> Self {
+		Self::new([T::zero(), T::zero(), T::zero(), T::one()])
+	}
+}
 
 impl<T: Sized + Clone> Index<usize> for Vec4<T> {
 	type Output = T;
