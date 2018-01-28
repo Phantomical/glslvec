@@ -10,8 +10,6 @@
 
 #![feature(slice_patterns)]
 
-extern crate vecmath;
-
 mod traits;
 mod vec2;
 mod vec3;
