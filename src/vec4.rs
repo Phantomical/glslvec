@@ -363,7 +363,7 @@ impl<T> DivAssign<T> for Vec4<T>
 }
 
 impl<T> HasClamp for Vec4<T>
-	where T: HasMinMax + Sized + Clone
+	where T: HasMinMax + Sized + Copy
 {
 	type ElemType = T;
 
