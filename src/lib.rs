@@ -33,7 +33,5 @@ pub use vec3::*;
 pub use vec4::*;
 pub use functions::*;
 
-#[cfg(swizzle)]
 mod swizzle;
-#[cfg(swizzle)]
 pub use swizzle::*;
