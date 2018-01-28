@@ -18,6 +18,8 @@ mod trait_impls;
 mod functions;
 mod float_mul;
 
+mod mat3;
+
 pub mod prelude {
 	//! Traits that are used to provide the implementations
 	//! for free function in the library. These should not
@@ -32,6 +34,7 @@ pub use vec2::*;
 pub use vec3::*;
 pub use vec4::*;
 pub use functions::*;
+pub use mat3::*;
 
 mod swizzle;
 pub use swizzle::*;
