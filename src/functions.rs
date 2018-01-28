@@ -1,6 +1,6 @@
 
 use traits::*;
-use std::ops::Rem;
+use std::ops::{Rem, Sub};
 
 /// Returns the dot product of a and b. In
 /// the case of scalars this returns a * b.
@@ -21,6 +21,14 @@ pub fn length<T: HasLength>(a: T) -> T::Output {
 /// Returns the distance between two points.
 pub fn distance<T: HasDistance>(a: T, b: T) -> T::Output {
 	a.distance(b)
+}
+
+/// Returns the square of the distance between two points
+pub fn distance2<T>(a: T, b: T) -> <T as HasDot>::Output
+	where T: HasDot + Sub<Output = T> + Clone
+{
+	let diff = a - b;
+	dot(diff.clone(), diff)
 }
 
 /// Returns a vector with length 1 that is parallel
