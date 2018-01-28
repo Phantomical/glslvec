@@ -18,6 +18,11 @@ pub fn cross<T: HasCross>(a: T, b: T) -> T {
 pub fn length<T: HasLength>(a: T) -> T::Output {
 	a.length()
 }
+/// Returns the square of the length of the vector.
+pub fn length2<T: HasDot + Clone>(a: T) -> T::Output {
+	dot(a.clone(), a)
+}
+
 /// Returns the distance between two points.
 pub fn distance<T: HasDistance>(a: T, b: T) -> T::Output {
 	a.distance(b)
