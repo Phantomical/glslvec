@@ -239,33 +239,3 @@ impl<T> HasDot for Vec4<T>
 	}
 }
 
-impl<T> HasX for Vec4<T> 
-	where T: Sized + Clone
-{
-	type Output = T;
-
-	fn x(&self) -> &T {
-		&self[0]
-	}
-}
-impl<T> HasY for Vec4<T>
-	where T: Sized + Clone
-{
-	fn y(&self) -> &T {
-		&self[1]
-	}
-}
-impl<T> HasZ for Vec4<T>
-	where T: Sized + Clone
-{
-	fn z(&self) -> &T {
-		&self[2]
-	}
-}
-impl<T> HasW for Vec4<T>
-	where T: Sized + Clone
-{
-	fn w(&self) -> &T {
-		&self[3]
-	}
-}

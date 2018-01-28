@@ -27,7 +27,6 @@ pub mod prelude {
 	pub use trait_impls::*;
 }
 
-pub use prelude::{HasX, HasY, HasZ, HasW};
 pub use vec2::*;
 pub use vec3::*;
 pub use vec4::*;

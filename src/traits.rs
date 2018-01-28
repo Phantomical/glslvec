@@ -66,30 +66,6 @@ pub trait HasRefract {
 	fn refract(&self, normal: Self, eta: Self::ElemType) -> Self;
 }
 
-/// Provides an accessor for the x component of a vector.
-pub trait HasX {
-	/// The type of the vector component.
-	type Output;
-
-	/// Accesses the x component of the vector.
-	fn x(&self) -> &Self::Output;
-}
-/// Provides an accessor for the y component of a vector.
-pub trait HasY: HasX {
-	/// Accesses the y component of the vector.
-	fn y(&self) -> &Self::Output;
-}
-/// Provides an accessor for the z component of a vector.
-pub trait HasZ: HasY {
-	/// Accesses the z component of the vector.
-	fn z(&self) -> &Self::Output;
-}
-/// Provides an accessor for the w component of a vector.
-pub trait HasW: HasZ {
-	/// Accesses the w component of the vector.
-	fn w(&self) -> &Self::Output;
-}
-
 /// A trait that exposes an interface to apply an operation 
 /// to each component of the vector. This trait is used to
 /// automatically implement several other traits if the 

@@ -234,26 +234,3 @@ impl<T> HasCross for Vec3<T>
 	}
 }
 
-impl<T> HasX for Vec3<T> 
-	where T: Sized + Clone
-{
-	type Output = T;
-
-	fn x(&self) -> &T {
-		&self[0]
-	}
-}
-impl<T> HasY for Vec3<T>
-	where T: Sized + Clone
-{
-	fn y(&self) -> &T {
-		&self[1]
-	}
-}
-impl<T> HasZ for Vec3<T>
-	where T: Sized + Clone
-{
-	fn z(&self) -> &T {
-		&self[2]
-	}
-}

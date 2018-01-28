@@ -206,19 +206,3 @@ impl<T> HasDot for Vec2<T>
 	}
 }
 
-impl<T> HasX for Vec2<T> 
-	where T: Sized + Clone
-{
-	type Output = T;
-
-	fn x(&self) -> &T {
-		&self[0]
-	}
-}
-impl<T> HasY for Vec2<T>
-	where T: Sized + Clone
-{
-	fn y(&self) -> &T {
-		&self[1]
-	}
-}
