@@ -5,8 +5,26 @@ use std::ops::*;
 
 use traits::*;
 
+/// A 4D vector.
 #[derive(Copy, Clone, Debug)]
-pub struct Vec4<T: Sized + Clone>(pub Vector4<T>);
+pub struct Vec4<T: Sized>(pub Vector4<T>);
+
+/// Constructs a Vec4 from individual components.
+pub fn vec4<T: Sized + Clone>(x: T, y: T, z: T, w: T) -> Vec4<T> {
+	Vec4([x, y, z, w])
+}
+
+impl<T: Sized + Clone> Vec4<T> {
+	/// Creates a new vector from an array of components
+	pub fn new(vals: [T; 4]) -> Self {
+		Vec4(vals)
+	}
+
+	/// Returns an array containing all the elements of the vector.
+	pub fn as_array(&self) -> [T; 4] {
+		self.0.clone()
+	}
+}
 
 impl<T: Sized + Clone> Index<usize> for Vec4<T> {
 	type Output = T;
@@ -196,7 +214,38 @@ impl<T> HasDot for Vec4<T>
 	type Output = T;
 
 	fn dot(&self, rhs: Self) -> T {
-		let [x, y, z, w] = (self.clone() * rhs).0;
+		let [x, y, z, w] = (self.clone() * rhs).as_array();
 		return x + y + z + w;
+	}
+}
+
+impl<T> HasX for Vec4<T> 
+	where T: Sized + Clone
+{
+	type Output = T;
+
+	fn x(&self) -> &T {
+		&self[0]
+	}
+}
+impl<T> HasY for Vec4<T>
+	where T: Sized + Clone
+{
+	fn y(&self) -> &T {
+		&self[1]
+	}
+}
+impl<T> HasZ for Vec4<T>
+	where T: Sized + Clone
+{
+	fn z(&self) -> &T {
+		&self[2]
+	}
+}
+impl<T> HasW for Vec4<T>
+	where T: Sized + Clone
+{
+	fn w(&self) -> &T {
+		&self[3]
 	}
 }

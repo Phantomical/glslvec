@@ -5,8 +5,26 @@ use std::ops::*;
 
 use traits::*;
 
+/// A 2D vector.
 #[derive(Copy, Clone, Debug)]
-pub struct Vec2<T: Sized + Clone>(pub Vector2<T>);
+pub struct Vec2<T: Sized>(pub Vector2<T>);
+
+/// Constructs a Vec2 from individual components.
+pub fn vec2<T: Sized + Clone>(x: T, y: T) -> Vec2<T> {
+	Vec2([x, y])
+}
+
+impl<T: Sized + Clone> Vec2<T> {
+	/// Creates a new vector from an array of components
+	pub fn new(vals: [T; 2]) -> Self {
+		Vec2(vals)
+	}
+
+	/// Returns an array containing all the elements of the vector.
+	pub fn as_array(&self) -> [T; 2] {
+		self.0.clone()
+	}
+}
 
 impl<T: Sized + Clone> Index<usize> for Vec2<T> {
 	type Output = T;
@@ -174,5 +192,22 @@ impl<T> HasDot for Vec2<T>
 	fn dot(&self, rhs: Self) -> T {
 		let [x, y] = (self.clone() * rhs).0;
 		return x + y;
+	}
+}
+
+impl<T> HasX for Vec2<T> 
+	where T: Sized + Clone
+{
+	type Output = T;
+
+	fn x(&self) -> &T {
+		&self[0]
+	}
+}
+impl<T> HasY for Vec2<T>
+	where T: Sized + Clone
+{
+	fn y(&self) -> &T {
+		&self[1]
 	}
 }

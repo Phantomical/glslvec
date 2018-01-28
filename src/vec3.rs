@@ -5,8 +5,26 @@ use std::ops::*;
 
 use traits::*;
 
+/// A 3D vector.
 #[derive(Copy, Clone, Debug)]
-pub struct Vec3<T: Sized + Clone>(pub Vector3<T>);
+pub struct Vec3<T: Sized>(pub Vector3<T>);
+
+/// Constructs a Vec3 from individual components.
+pub fn vec3<T: Sized + Clone>(x: T, y: T, z: T) -> Vec3<T> {
+	Vec3([x, y, z])
+}
+
+impl<T: Sized + Clone> Vec3<T> {
+	/// Creates a new vector from an array of components
+	pub fn new(vals: [T; 3]) -> Self {
+		Vec3(vals)
+	}
+
+	/// Returns an array containing all the elements of the vector.
+	pub fn as_array(&self) -> [T; 3] {
+		self.0.clone()
+	}
+}
 
 impl<T: Sized + Clone> Index<usize> for Vec3<T> {
 	type Output = T;
@@ -194,5 +212,29 @@ impl<T> HasCross for Vec3<T>
 {
 	fn cross(&self, rhs: Self) -> Self {
 		Vec3(vec3_cross(self.0, rhs.0))
+	}
+}
+
+impl<T> HasX for Vec3<T> 
+	where T: Sized + Clone
+{
+	type Output = T;
+
+	fn x(&self) -> &T {
+		&self[0]
+	}
+}
+impl<T> HasY for Vec3<T>
+	where T: Sized + Clone
+{
+	fn y(&self) -> &T {
+		&self[1]
+	}
+}
+impl<T> HasZ for Vec3<T>
+	where T: Sized + Clone
+{
+	fn z(&self) -> &T {
+		&self[2]
 	}
 }

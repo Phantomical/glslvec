@@ -1,4 +1,13 @@
 
+//! A vector math library which attempts to mostly replicate
+//! the vector math functions available in GLSL.
+//!
+//! This means that all functions are free functions that
+//! delegate their workings to an internal trait. If needed
+//! those templates are available in the 
+//! [prelude](prelude/index.html) module. They should only be
+//! required if implementing new vector types. 
+
 #![feature(slice_patterns)]
 
 extern crate vecmath;
@@ -11,6 +20,11 @@ mod trait_impls;
 mod functions;
 
 pub mod prelude {
+	//! Traits that are used to provide the implementations
+	//! for free function in the library. These should not
+	//! be necessary to use unless implementing custom 
+	//! vector types or writing generic functions.
+
 	pub use traits::*;
 	pub use trait_impls::*;
 }

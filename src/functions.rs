@@ -77,7 +77,7 @@ pub fn ceil<T: HasCeil>(x: T) -> T {
 	x.ceil()
 }
 
-/// Returns the fractional part of `x` (i.e. `x - floor(x)`.
+/// Returns the fractional part of `x` (i.e. `x - floor(x)`).
 /// For vectors this operation is done component-wise.
 pub fn fract<T: HasFract>(x: T) -> T {
 	x.fract()
