@@ -6,7 +6,7 @@ use std::ops::*;
 use traits::*;
 
 /// A 2D vector.
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, Default)]
 pub struct Vec2<T: Sized>(pub Vector2<T>);
 
 /// Constructs a Vec2 from individual components.

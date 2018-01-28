@@ -6,7 +6,7 @@ use std::ops::*;
 use traits::*;
 
 /// A 4D vector.
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, Default)]
 pub struct Vec4<T: Sized>(pub Vector4<T>);
 
 /// Constructs a Vec4 from individual components.
