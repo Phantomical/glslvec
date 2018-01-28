@@ -280,3 +280,84 @@ impl<T> Neg for Vec4<T>
 	}
 }
 
+impl<T> AddAssign for Vec4<T>
+	where T: AddAssign + Sized + Clone
+{
+	fn add_assign(&mut self, rhs: Vec4<T>) {
+		self.x += rhs.x;
+		self.y += rhs.y;
+		self.z += rhs.z;
+		self.w += rhs.w;
+	}
+}
+impl<T> SubAssign for Vec4<T>
+	where T: SubAssign + Sized + Clone
+{
+	fn sub_assign(&mut self, rhs: Vec4<T>) {
+		self.x -= rhs.x;
+		self.y -= rhs.y;
+		self.z -= rhs.z;
+		self.w -= rhs.w;
+	}
+}
+impl<T> MulAssign for Vec4<T>
+	where T: MulAssign + Sized + Clone
+{
+	fn mul_assign(&mut self, rhs: Vec4<T>) {
+		self.x *= rhs.x;
+		self.y *= rhs.y;
+		self.z *= rhs.z;
+		self.w *= rhs.w;
+	}
+}
+impl<T> DivAssign for Vec4<T>
+	where T: DivAssign + Sized + Clone
+{
+	fn div_assign(&mut self, rhs: Vec4<T>) {
+		self.x /= rhs.x;
+		self.y /= rhs.y;
+		self.z /= rhs.z;
+		self.w /= rhs.w;
+	}
+}
+
+impl<T> AddAssign<T> for Vec4<T>
+	where T: AddAssign + Sized + Clone
+{
+	fn add_assign(&mut self, rhs: T) {
+		self.x += rhs.clone();
+		self.y += rhs.clone();
+		self.z += rhs.clone();
+		self.w += rhs;
+	}
+}
+impl<T> SubAssign<T> for Vec4<T>
+	where T: SubAssign + Sized + Clone
+{
+	fn sub_assign(&mut self, rhs: T) {
+		self.x -= rhs.clone();
+		self.y -= rhs.clone();
+		self.z -= rhs.clone();
+		self.w -= rhs;
+	}
+}
+impl<T> MulAssign<T> for Vec4<T>
+	where T: MulAssign + Sized + Clone
+{
+	fn mul_assign(&mut self, rhs: T) {
+		self.x *= rhs.clone();
+		self.y *= rhs.clone();
+		self.z *= rhs.clone();
+		self.w *= rhs;
+	}
+}
+impl<T> DivAssign<T> for Vec4<T>
+	where T: DivAssign + Sized + Clone
+{
+	fn div_assign(&mut self, rhs: T) {
+		self.x /= rhs.clone();
+		self.y /= rhs.clone();
+		self.z /= rhs.clone();
+		self.w /= rhs;
+	}
+}

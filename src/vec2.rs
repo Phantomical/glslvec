@@ -236,3 +236,69 @@ impl<T> Neg for Vec2<T>
 	}
 }
 
+impl<T> AddAssign for Vec2<T>
+	where T: AddAssign + Sized + Clone
+{
+	fn add_assign(&mut self, rhs: Vec2<T>) {
+		self.x += rhs.x;
+		self.y += rhs.y;
+	}
+}
+impl<T> SubAssign for Vec2<T>
+	where T: SubAssign + Sized + Clone
+{
+	fn sub_assign(&mut self, rhs: Vec2<T>) {
+		self.x -= rhs.x;
+		self.y -= rhs.y;
+	}
+}
+impl<T> MulAssign for Vec2<T>
+	where T: MulAssign + Sized + Clone
+{
+	fn mul_assign(&mut self, rhs: Vec2<T>) {
+		self.x *= rhs.x;
+		self.y *= rhs.y;
+	}
+}
+impl<T> DivAssign for Vec2<T>
+	where T: DivAssign + Sized + Clone
+{
+	fn div_assign(&mut self, rhs: Vec2<T>) {
+		self.x /= rhs.x;
+		self.y /= rhs.y;
+	}
+}
+
+impl<T> AddAssign<T> for Vec2<T>
+	where T: AddAssign + Sized + Clone
+{
+	fn add_assign(&mut self, rhs: T) {
+		self.x += rhs.clone();
+		self.y += rhs;
+	}
+}
+impl<T> SubAssign<T> for Vec2<T>
+	where T: SubAssign + Sized + Clone
+{
+	fn sub_assign(&mut self, rhs: T) {
+		self.x -= rhs.clone();
+		self.y -= rhs;
+	}
+}
+impl<T> MulAssign<T> for Vec2<T>
+	where T: MulAssign + Sized + Clone
+{
+	fn mul_assign(&mut self, rhs: T) {
+		self.x *= rhs.clone();
+		self.y *= rhs;
+	}
+}
+impl<T> DivAssign<T> for Vec2<T>
+	where T: DivAssign + Sized + Clone
+{
+	fn div_assign(&mut self, rhs: T) {
+		self.x /= rhs.clone();
+		self.y /= rhs;
+	}
+}
+
