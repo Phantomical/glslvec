@@ -271,3 +271,13 @@ impl<T: HasPerElementOps + HasPerElementBinOps> HasExponential for T
 	}
 }
 
+impl<T: HasPerElementBinOps> HasMix for T
+	where T::ElemType: HasMix<ElemType = T::ElemType> + Clone
+{
+	type ElemType = T::ElemType;
+
+	fn mix(&self, b: Self, f: Self::ElemType) -> T {
+		self.apply_bin_op(b, move |ref a, b| a.mix(b, f.clone()))
+	}
+}
+
