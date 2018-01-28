@@ -266,3 +266,17 @@ impl<T> HasDot for Vec4<T>
 	}
 }
 
+impl<T> Neg for Vec4<T>
+	where T: Neg<Output = T> + Sized + Clone
+{
+	type Output = Self;
+
+	fn neg(self) -> Self {
+		vec4(
+			-self.x,
+			-self.y,
+			-self.z,
+			-self.w)
+	}
+}
+

@@ -114,6 +114,17 @@ macro_rules! implement_functions {
 				x * x * (3.0 - 2.0 * x)
 			}
 		}
+
+		impl Zero for $type {
+			fn zero() -> Self {
+				0.0
+			}
+		}
+		impl One for $type {
+			fn one() -> Self {
+				1.0
+			}
+		}
 	}
 }
 

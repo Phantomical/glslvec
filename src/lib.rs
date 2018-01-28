@@ -16,6 +16,7 @@ mod vec3;
 mod vec4;
 mod trait_impls;
 mod functions;
+mod float_mul;
 
 pub mod prelude {
 	//! Traits that are used to provide the implementations

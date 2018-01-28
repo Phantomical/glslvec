@@ -256,3 +256,16 @@ impl<T> HasCross for Vec3<T>
 	}
 }
 
+impl<T> Neg for Vec3<T>
+	where T: Neg<Output = T> + Sized + Clone
+{
+	type Output = Self;
+
+	fn neg(self) -> Self {
+		vec3(
+			-self.x,
+			-self.y,
+			-self.z)
+	}
+}
+
